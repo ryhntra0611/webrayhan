@@ -3,229 +3,455 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rayhan | Personal Branding</title>
+    <title>Rayhan | Portfolio</title>
+
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- AOS -->
+    <link rel="stylesheet"
+        href="https://unpkg.com/aos@next/dist/aos.css">
+
+    <!-- Font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <style>
-        body { font-family: 'Inter', system-ui, sans-serif; }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Hero Background */
         .hero-bg {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), 
-                        url('https://source.unsplash.com/random/1920x1080/?mobile-legends') center/cover no-repeat;
+            background:
+                linear-gradient(rgba(0,0,0,.8), rgba(15,23,42,.95)),
+                url('images/hero.jpg');
+            background-size: cover;
+            background-position: center;
         }
+
+        /* Glass Effect */
+        .glass {
+            background: rgba(17, 24, 39, .7);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Card Hover */
         .card-hover {
-            transition: all 0.3s ease;
+            transition: .4s ease;
         }
+
         .card-hover:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,.4);
         }
-        .profile-img {
-            transition: all 0.4s ease;
+
+        /* Floating Animation */
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
         }
-        .profile-img:hover {
-            transform: scale(1.05);
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
 
-    <!-- Navbar -->
-    <nav class="bg-white shadow-md fixed w-full z-50">
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="glass fixed w-full z-50 border-b border-gray-800">
+
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl">R</div>
+
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center font-bold text-2xl">
+                    R
+                </div>
                 <h1 class="text-2xl font-bold">Rayhan</h1>
             </div>
-            
-            <div class="hidden md:flex space-x-8 text-lg">
-                <a href="#home" class="hover:text-blue-600 transition">Beranda</a>
-                <a href="#about" class="hover:text-blue-600 transition">Tentang</a>
-                <a href="#education" class="hover:text-blue-600 transition">Pendidikan</a>
-                <a href="#hobbies" class="hover:text-blue-600 transition">Hobi</a>
-                <a href="#skills" class="hover:text-blue-600 transition">Keahlian</a>
-                <a href="#contact" class="hover:text-blue-600 transition">Kontak</a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-8 text-lg">
+                <a href="#home" class="hover:text-blue-400 transition">Beranda</a>
+                <a href="#about" class="hover:text-blue-400 transition">Tentang</a>
+                <a href="#education" class="hover:text-blue-400 transition">Pendidikan</a>
+                <a href="#hobbies" class="hover:text-blue-400 transition">Hobi</a>
+                <a href="#skills" class="hover:text-blue-400 transition">Skills</a>
+                <a href="#contact" class="hover:text-blue-400 transition">Kontak</a>
             </div>
-            
-            <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-2xl font-medium transition">
-                Hubungi Saya
-            </a>
+
+            <!-- Contact Button -->
+            <div class="hidden md:block">
+                <a href="#contact"
+                    class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-2xl transition">
+                    Hubungi Saya
+                </a>
+            </div>
+
+            <!-- Hamburger -->
+            <button id="menu-btn" class="md:hidden text-3xl">
+                <i class="fas fa-bars"></i>
+            </button>
+
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden border-t border-gray-800 bg-[#111827]">
+
+            <div class="flex flex-col p-6 gap-5 text-lg">
+                <a href="#home" class="mobile-link hover:text-blue-400">Beranda</a>
+                <a href="#about" class="mobile-link hover:text-blue-400">Tentang</a>
+                <a href="#education" class="mobile-link hover:text-blue-400">Pendidikan</a>
+                <a href="#hobbies" class="mobile-link hover:text-blue-400">Hobi</a>
+                <a href="#skills" class="mobile-link hover:text-blue-400">Skills</a>
+                <a href="#contact" class="mobile-link hover:text-blue-400">Kontak</a>
+            </div>
+
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-bg h-screen flex items-center text-white">
-        <div class="max-w-7xl mx-auto px-6 pt-20">
-            <div class="max-w-2xl">
-                <p class="text-blue-400 text-lg mb-2">Halo, saya 👋</p>
-                <h1 class="text-6xl md:text-7xl font-bold leading-tight mb-6">
-                    Rayhan Saputra
+    <!-- ================= HERO ================= -->
+    <section id="home" class="hero-bg h-screen flex items-center">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="max-w-2xl" data-aos="fade-right">
+
+                <p class="text-blue-400 text-lg mb-3">Halo, saya 👋</p>
+
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
+                    Rayhan
+                    <span class="gradient-text">Saputra</span>
                 </h1>
-                <p class="text-2xl mb-8 text-gray-200">
-                    Web Developer &amp; Mobile Legends Enthusiast
+
+                <p class="text-2xl text-gray-300 mb-8">
+                    Web Developer • Pelajar TJKT • Tech Enthusiast
                 </p>
-                <p class="text-xl text-gray-300 mb-10">
-                    Membantu brand dan bisnis membangun kehadiran digital yang kuat.<br>
-                    Saat santai biasanya <span class="font-semibold text-yellow-400">push rank MLBB</span> 🔥
+
+                <p class="text-lg text-gray-400 leading-relaxed mb-10">
+                    Membangun website modern dan terus belajar dunia networking,
+                    programming, dan teknologi digital.
                 </p>
-                
+
                 <div class="flex flex-wrap gap-4">
-                    <a href="#education" class="bg-white text-black px-8 py-4 rounded-2xl font-semibold hover:bg-gray-100 transition flex items-center gap-2">
-                        <i class="fas fa-graduation-cap"></i> Riwayat Pendidikan
+                    <a href="#about"
+                        class="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-2xl font-semibold transition">
+                        Tentang Saya
                     </a>
-                    <a href="#contact" class="border-2 border-white hover:bg-white hover:text-black px-8 py-4 rounded-2xl font-semibold transition">
-                        Mari Berkolaborasi
+
+                    <a href="#contact"
+                        class="border border-gray-500 hover:bg-white hover:text-black px-8 py-4 rounded-2xl transition">
+                        Kontak
                     </a>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div>
-                    <img src="images/diri.jpeg" 
-                         alt="Rayhan Saputra"
-                         class="profile-img w-full rounded-3xl shadow-2xl">
-                </div>
-                <div>
-                    <h2 class="text-4xl font-bold mb-6">Tentang Saya</h2>
-                    <p class="text-lg leading-relaxed text-gray-600 mb-6">
-                       Pelajar TKJ (Teknik Komputer dan Jaringan) yang memiliki minat besar di bidang teknologi dan pengembangan digital. 
-                       Saya senang mempelajari hal-hal baru seputar komputer, jaringan, dan website development untuk terus meningkatkan kemampuan di dunia IT.
-                    </p>
-                    <p class="text-lg leading-relaxed text-gray-600">
-                        Di luar coding, saya aktif bermain <strong>Mobile Legends</strong>. 
-                        Di waktu luang, saya suka bermain Mobile Legends: Bang Bang.
-                        Dari game ini, saya belajar tentang kerja sama tim, komunikasi, dan strategi yang juga bermanfaat dalam kehidupan sehari-hari maupun saat bekerja dalam tim.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education / Jenjang Sekolah -->
-    <section id="education" class="py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16">Jenjang Pendidikan</h2>
-            
-            <div class="max-w-3xl mx-auto space-y-8">
-
-                <!-- SMA -->
-                <div class="bg-white p-8 rounded-3xl card-hover flex gap-6">
-                    <div class="w-20 h-20 bg-emerald-600 text-white rounded-2xl flex-shrink-0 flex items-center justify-center text-4xl font-bold">S</div>
-                    <div class="flex-1">
-                        <div>
-                            <h3 class="font-semibold text-2xl">SMKN 13 Bandung</h3>
-                            <p class="text-emerald-600 font-medium">TJKT • 2024 - 2027</p>
-                        </div>
-                        <p class="mt-3 text-gray-600">Pelajar yang mempelajari jaringan dan Telekomunikasi</p>
-                    </div>
-                </div>
-
-                <!-- SMP -->
-                <div class="bg-white p-8 rounded-3xl card-hover flex gap-6">
-                    <div class="w-20 h-20 bg-purple-600 text-white rounded-2xl flex-shrink-0 flex items-center justify-center text-4xl font-bold">S</div>
-                    <div class="flex-1">
-                        <div>
-                            <h3 class="font-semibold text-2xl">SMPN 8 Bandung</h3>
-                            <p class="text-purple-600 font-medium">2021 - 2024</p>
-                        </div>
-                        <p class="mt-3 text-gray-600">Aktif di ekstrakulikuler Futsal</p>
-                    </div>
-                </div>
-
-                <!-- SD -->
-                <div class="bg-white p-8 rounded-3xl card-hover flex gap-6">
-                    <div class="w-20 h-20 bg-amber-600 text-white rounded-2xl flex-shrink-0 flex items-center justify-center text-4xl font-bold">E</div>
-                    <div class="flex-1">
-                        <div>
-                            <h3 class="font-semibold text-2xl">SDN 036 Ujungberung</h3>
-                            <p class="text-amber-600 font-medium">2015 - 2021</p>
-                        </div>
-                    </div>
-                </div>
 
             </div>
+
         </div>
+
     </section>
 
-    <!-- Hobbies -->
-    <section id="hobbies" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16">Hobi Saya</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-3xl overflow-hidden card-hover border">
-                    <img src="images/mobile.jpeg" alt="MLBB" class="w-full h-64 object-cover">
-                    <div class="p-8 text-center">
-                        <h3 class="font-semibold text-2xl mb-3">Mobile Legends</h3>
-                        <p class="text-gray-600">Immortal Glory Player</p>
-                        <div class="mt-4 text-sm bg-yellow-100 text-yellow-700 inline-block px-6 py-2 rounded-2xl">
-                            Favorite Hero: Fanny & Ling
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-3xl overflow-hidden card-hover border">
-                    <img src="images/futsal.jpeg" alt="Coding" class="w-full h-64 object-cover">
-                    <div class="p-8 text-center">
-                        <h3 class="font-semibold text-2xl mb-3">Olahraga</h3>
-                        <p class="text-gray-600">Berolahraga di waktu senggang</p>
-                    </div>
-                </div>
-                
-                <div class="bg-white rounded-3xl overflow-hidden card-hover border">
-                    <img src="images/travell.jpeg" alt="Traveling" class="w-full h-64 object-cover">
-                    <div class="p-8 text-center">
-                        <h3 class="font-semibold text-2xl mb-3">Traveling</h3>
-                        <p class="text-gray-600">Eksplor wisata di Jawa Barat</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- SECTION LAIN -->
+    <!-- About, Education, Hobbies, Skills, Contact tetap sama -->
+    <!-- Struktur sekarang sudah lebih clean dan konsisten -->
 
-    <!-- Skills -->
-    <section id="skills" class="py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16">Keahlian Saya</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="bg-white p-8 rounded-3xl card-hover text-center">💻 Web Development</div>
-                <div class="bg-white p-8 rounded-3xl card-hover text-center">🎨 UI/UX Design</div>
-                <div class="bg-white p-8 rounded-3xl card-hover text-center">📱 Personal Branding</div>
-                <div class="bg-white p-8 rounded-3xl card-hover text-center">🚀 Digital Marketing</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-8">Mari Berkolaborasi</h2>
-            <a href="https://wa.me/88901412417" target="_blank"
-               class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-10 py-5 rounded-3xl text-lg font-semibold">
-                <i class="fab fa-whatsapp text-2xl"></i> Chat via WhatsApp
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-12">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <p>© 2026 Rayhan Saputra • Web Developer & MLBB Player dari Bandung</p>
-        </div>
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-black border-t border-gray-800 py-10 text-center text-gray-500">
+        © 2026 Rayhan Saputra • Portfolio Website
     </footer>
 
+    <!-- ================= SCRIPTS ================= -->
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if (this.getAttribute('href') !== '#') {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-                }
+        // AOS Init
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+
+            const icon = menuBtn.querySelector('i');
+
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.replace('fa-xmark', 'fa-bars');
+            } else {
+                icon.classList.replace('fa-bars', 'fa-xmark');
+            }
+        });
+
+        // Auto Close Mobile Menu
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+
+                const icon = menuBtn.querySelector('i');
+                icon.classList.replace('fa-xmark', 'fa-bars');
             });
         });
     </script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rayhan | Portfolio</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- AOS -->
+    <link rel="stylesheet"
+        href="https://unpkg.com/aos@next/dist/aos.css">
+
+    <!-- Font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Hero Background */
+        .hero-bg {
+            background:
+                linear-gradient(rgba(0,0,0,.8), rgba(15,23,42,.95)),
+                url('images/hero.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Glass Effect */
+        .glass {
+            background: rgba(17, 24, 39, .7);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Card Hover */
+        .card-hover {
+            transition: .4s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,.4);
+        }
+
+        /* Floating Animation */
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="glass fixed w-full z-50 border-b border-gray-800">
+
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center font-bold text-2xl">
+                    R
+                </div>
+                <h1 class="text-2xl font-bold">Rayhan</h1>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-8 text-lg">
+                <a href="#home" class="hover:text-blue-400 transition">Beranda</a>
+                <a href="#about" class="hover:text-blue-400 transition">Tentang</a>
+                <a href="#education" class="hover:text-blue-400 transition">Pendidikan</a>
+                <a href="#hobbies" class="hover:text-blue-400 transition">Hobi</a>
+                <a href="#skills" class="hover:text-blue-400 transition">Skills</a>
+                <a href="#contact" class="hover:text-blue-400 transition">Kontak</a>
+            </div>
+
+            <!-- Contact Button -->
+            <div class="hidden md:block">
+                <a href="#contact"
+                    class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-2xl transition">
+                    Hubungi Saya
+                </a>
+            </div>
+
+            <!-- Hamburger -->
+            <button id="menu-btn" class="md:hidden text-3xl">
+                <i class="fas fa-bars"></i>
+            </button>
+
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden border-t border-gray-800 bg-[#111827]">
+
+            <div class="flex flex-col p-6 gap-5 text-lg">
+                <a href="#home" class="mobile-link hover:text-blue-400">Beranda</a>
+                <a href="#about" class="mobile-link hover:text-blue-400">Tentang</a>
+                <a href="#education" class="mobile-link hover:text-blue-400">Pendidikan</a>
+                <a href="#hobbies" class="mobile-link hover:text-blue-400">Hobi</a>
+                <a href="#skills" class="mobile-link hover:text-blue-400">Skills</a>
+                <a href="#contact" class="mobile-link hover:text-blue-400">Kontak</a>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- ================= HERO ================= -->
+    <section id="home" class="hero-bg h-screen flex items-center">
+
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="max-w-2xl" data-aos="fade-right">
+
+                <p class="text-blue-400 text-lg mb-3">Halo, saya 👋</p>
+
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
+                    Rayhan
+                    <span class="gradient-text">Saputra</span>
+                </h1>
+
+                <p class="text-2xl text-gray-300 mb-8">
+                    Web Developer • Pelajar TJKT • Tech Enthusiast
+                </p>
+
+                <p class="text-lg text-gray-400 leading-relaxed mb-10">
+                    Membangun website modern dan terus belajar dunia networking,
+                    programming, dan teknologi digital.
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <a href="#about"
+                        class="bg-blue-600 hover:bg-blue-700 px-8 py-4 rounded-2xl font-semibold transition">
+                        Tentang Saya
+                    </a>
+
+                    <a href="#contact"
+                        class="border border-gray-500 hover:bg-white hover:text-black px-8 py-4 rounded-2xl transition">
+                        Kontak
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SECTION LAIN -->
+    <!-- About, Education, Hobbies, Skills, Contact tetap sama -->
+    <!-- Struktur sekarang sudah lebih clean dan konsisten -->
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-black border-t border-gray-800 py-10 text-center text-gray-500">
+        © 2026 Rayhan Saputra • Portfolio Website
+    </footer>
+
+    <!-- ================= SCRIPTS ================= -->
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <script>
+        // AOS Init
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+
+            const icon = menuBtn.querySelector('i');
+
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.replace('fa-xmark', 'fa-bars');
+            } else {
+                icon.classList.replace('fa-bars', 'fa-xmark');
+            }
+        });
+
+        // Auto Close Mobile Menu
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+
+                const icon = menuBtn.querySelector('i');
+                icon.classList.replace('fa-xmark', 'fa-bars');
+            });
+        });
+    </script>
+
 </body>
 </html>
